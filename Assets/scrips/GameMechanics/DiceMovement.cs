@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using scrips.GameMechanics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Vector2 = UnityEngine.Vector2;
@@ -42,11 +43,20 @@ public class DiceMovement : MonoBehaviour
         };
     }
 
-    private IEnumerator Roll(Vector3 movementVector)
+    private void Update()
     {
         if (!_isMoving)
         {
-            Debug.Log(movementVector);
+            Debug.Log(DiceNumberManager.Instance.GetNumber());
+        }
+    }
+
+    private IEnumerator Roll(Vector3 movementVector)
+    {
+        var ray = new Ray(transform.position, movementVector);
+        RaycastHit hit;
+        if (!_isMoving && !Physics.Raycast(ray,out hit,transform.localScale.x  , ~LayerMask.NameToLayer("Wall")))
+        {
             _isMoving = true;
             float remainingAngle = 90;
             Vector3 rotationCenter = transform.position + ( movementVector/2 + Vector3.down/2)* transform.localScale.x;
