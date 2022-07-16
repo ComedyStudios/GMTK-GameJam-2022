@@ -3,18 +3,10 @@ using UnityEngine;
 
 namespace scrips.GameMechanics
 {
-    public class DiceNumberManager : MonoBehaviour
+    public class DiceNumberManager : MonoBehaviour 
     {
-        public static DiceNumberManager Instance;
-        
-        public void Start()
-        {
-            Instance = this;
-        }
-
         public int? GetNumber()
         {
-            //i know its retardet but its the fastest way
             if (transform.up == Vector3.up)
             {
                 return 1;

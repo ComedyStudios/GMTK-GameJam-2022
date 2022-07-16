@@ -31,6 +31,7 @@ public class DiceMovement : MonoBehaviour
     private void Start()
     {
         transform.localScale = new Vector3(transform.localScale.x, transform.localScale.x, transform.localScale.z);
+        var numberManager = GetComponent<DiceNumberManager>();
         movementActionX.performed += context =>
         {
             var value = context.ReadValue<float>();
@@ -45,10 +46,7 @@ public class DiceMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!_isMoving)
-        {
-            Debug.Log(DiceNumberManager.Instance.GetNumber());
-        }
+        
     }
 
     private IEnumerator Roll(Vector3 movementVector)
