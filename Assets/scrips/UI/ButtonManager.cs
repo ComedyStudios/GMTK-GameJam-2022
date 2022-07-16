@@ -26,5 +26,10 @@ namespace scrips.UI
         {
             SceneManager.LoadScene("Level_" + level);
         }
+
+        public void StartScreenLoad()
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 }

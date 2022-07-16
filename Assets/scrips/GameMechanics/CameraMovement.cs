@@ -9,7 +9,7 @@ namespace scrips.GameMechanics
     {
         public InputAction cameraMovementAction;
 
-        private bool _isMoving = false;
+        private bool _isMoving = false; 
 
         private void OnEnable()
         {
@@ -32,13 +32,13 @@ namespace scrips.GameMechanics
             {
                 _isMoving = true;
                 const int totalDeg = 90;
-                const int rotateAmount = 1;
+                const int rotateAmount = 2;
                 var currentDeg = 0;
                 while (totalDeg > currentDeg)
                 {
                     transform.Rotate(Vector3.up, rotateAmount *value, Space.World);
                     currentDeg += rotateAmount;
-                    yield return new WaitForSeconds(Time.deltaTime);
+                    yield return new WaitForSeconds(1f/80);
                 }
                 _isMoving = false;
             }

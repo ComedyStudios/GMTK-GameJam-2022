@@ -5,6 +5,8 @@ using System.Numerics;
 using scrips.GameMechanics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
+using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -14,7 +16,7 @@ public class DiceMovement : MonoBehaviour
     public InputAction movementActionY;
     public float speed = 300;
 
-    private bool _isMoving = false;
+    public bool diceMoving = false;
 
     private void OnEnable()
     {
@@ -26,6 +28,7 @@ public class DiceMovement : MonoBehaviour
     {
         movementActionX.Disable();
         movementActionY.Disable();
+        
     }
 
     private void Start()
@@ -43,27 +46,34 @@ public class DiceMovement : MonoBehaviour
             StartCoroutine(Roll(new Vector3( 0,0, -Convert.ToInt32(value))));
         };
     }
-
-    private void Update()
-    {
-        
-    }
-
+    
     private IEnumerator Roll(Vector3 movementVector)
     {
-        var ray = new Ray(transform.position, movementVector);
-        RaycastHit hit;
+        float rotation = (int)(Camera.main.gameObject.transform.eulerAngles.y - 35);
+        float temp = rotation / 90;
+        rotation = (int) temp * 90;
         
-        if (!_isMoving)
+        movementVector = Quaternion.Euler(0, rotation, 0) * movementVector;
+        var ray = new Ray(transform.position, movementVector);
+        Debug.Log(rotation);
+        
+        if (!diceMoving)
         {
-            if (Physics.Raycast(ray, out hit, transform.localScale.x))
+            if (Physics.Raycast(ray, out var hit, transform.localScale.x))
             {
                 if (hit.collider.CompareTag("Wall"))
                 {
                     yield break;
                 }
             }
-            _isMoving = true;
+            if (Physics.Raycast(transform.position + movementVector, Vector3.down, out hit ,2f, LayerMask.NameToLayer("Player")))
+            {
+                if (!hit.collider.CompareTag("floor"))
+                {
+                    yield break;
+                }
+            }
+            diceMoving = true;
             float remainingAngle = 90;
             Vector3 rotationCenter = transform.position + ( movementVector/2 + Vector3.down/2)* transform.localScale.x;
             Vector3 rotationAxis = Vector3.Cross(Vector3.up, movementVector);
@@ -73,7 +83,7 @@ public class DiceMovement : MonoBehaviour
                 remainingAngle -= rotationAngle;
                 yield return null;
             }
-            _isMoving = false;
+            diceMoving = false;
         }
     }
 }
