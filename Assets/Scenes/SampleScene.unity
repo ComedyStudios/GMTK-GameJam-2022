@@ -2086,6 +2086,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 674483426}
+  - component: {fileID: 674483427}
   m_Layer: 0
   m_Name: camera piviot
   m_TagString: Untagged
@@ -2109,6 +2110,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 30, y: 35, z: 0}
+--- !u!114 &674483427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674483425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c782728871d941a89a0bca39a79ad09c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraMovementAction:
+    m_Name: Camera Movement
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0ac02c8b-25df-402f-b5d0-a6ce6eaf1fca
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 1D Axis
+      m_Id: 06f82551-7085-40ff-900f-8febbc33fbb1
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Camera Movement
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 6f885c52-cfe5-46fd-a761-8fd6cab34d42
+      m_Path: <Keyboard>/e
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Camera Movement
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 79350d9d-6ecc-4239-bcc4-6956b9a2e4d9
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Camera Movement
+      m_Flags: 8
+    m_Flags: 0
 --- !u!1001 &738830566
 PrefabInstance:
   m_ObjectHideFlags: 0
