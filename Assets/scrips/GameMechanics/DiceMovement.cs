@@ -55,8 +55,16 @@ public class DiceMovement : MonoBehaviour
     {
         var ray = new Ray(transform.position, movementVector);
         RaycastHit hit;
-        if (!_isMoving && !Physics.Raycast(ray,out hit,transform.localScale.x  , ~LayerMask.NameToLayer("Wall")))
+        
+        if (!_isMoving)
         {
+            if (Physics.Raycast(ray, out hit, transform.localScale.x))
+            {
+                if (hit.collider.CompareTag("Wall"))
+                {
+                    yield break;
+                }
+            }
             _isMoving = true;
             float remainingAngle = 90;
             Vector3 rotationCenter = transform.position + ( movementVector/2 + Vector3.down/2)* transform.localScale.x;
