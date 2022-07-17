@@ -29,7 +29,6 @@ namespace scrips.GameMechanics
                 {
                    GameStateManager.Instance.activeWinPlates.Add(this);
                 }
-                //accept any number
                 else if (rightNumber == 0 &&!GameStateManager.Instance.activeWinPlates.Contains(this) )
                 {
                     GameStateManager.Instance.activeWinPlates.Add(this);

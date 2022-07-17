@@ -355,7 +355,15 @@ MonoBehaviour:
     m_Id: a83ef47f-8a89-448c-8a84-fa937a738d83
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 5e0246d9-8341-403b-84f0-917500d4a0cd
+      m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Reset Level
+      m_Flags: 0
     m_Flags: 0
   speed: 300
   diceMoving: 0

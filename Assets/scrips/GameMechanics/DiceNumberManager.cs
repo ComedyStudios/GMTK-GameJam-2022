@@ -15,7 +15,7 @@ namespace scrips.GameMechanics
             {
                 return 6;
             }
-            if (transform.right == Vector3.up)
+            else if (transform.right == Vector3.up)
             {
                 return 3;
             }
@@ -23,7 +23,7 @@ namespace scrips.GameMechanics
             {
                 return 4;
             }
-            if (transform.forward == Vector3.up)
+            else if (transform.forward == Vector3.up)
             {
                 return 2;
             }

@@ -50,6 +50,13 @@ public class DiceMovement : MonoBehaviour
         };
         resetLevelAction.performed += _ => resetLevel();
     }
+    
+    
+
+    private void Update()
+    {
+        Debug.Log(GetComponent<DiceNumberManager>().GetNumber());
+    }
 
     private void resetLevel()
     {
