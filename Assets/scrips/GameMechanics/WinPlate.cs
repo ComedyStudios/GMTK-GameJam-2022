@@ -7,12 +7,16 @@ namespace scrips.GameMechanics
     public class WinPlate : MonoBehaviour
     {
         public TextMeshProUGUI text;
-        [Range(1,6)]
+        [Range(0,6)]
         public int rightNumber;
 
         private void Start()
         {
-            text.text = rightNumber.ToString();
+            if (rightNumber != 0)
+            {
+                text.text = rightNumber.ToString();
+            }
+            else text.text = "*";
         }
 
         private void OnTriggerStay(Collider other)
@@ -23,6 +27,11 @@ namespace scrips.GameMechanics
                 if (number == rightNumber && !GameStateManager.Instance.activeWinPlates.Contains(this))
                 {
                    GameStateManager.Instance.activeWinPlates.Add(this);
+                }
+                //accept any number
+                else if (rightNumber == 0 &&!GameStateManager.Instance.activeWinPlates.Contains(this) )
+                {
+                    GameStateManager.Instance.activeWinPlates.Add(this);
                 }
             }
         }

@@ -6,6 +6,7 @@ using scrips.GameMechanics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
+using UnityEngine.SceneManagement;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -14,6 +15,7 @@ public class DiceMovement : MonoBehaviour
 {
     public InputAction movementActionX;
     public InputAction movementActionY;
+    public InputAction resetLevelAction;
     public float speed = 300;
 
     public bool diceMoving = false;
@@ -22,13 +24,14 @@ public class DiceMovement : MonoBehaviour
     {
         movementActionX.Enable();
         movementActionY.Enable();
+        resetLevelAction.Enable();
     }
 
     private void OnDisable()
     {
         movementActionX.Disable();
         movementActionY.Disable();
-        
+        resetLevelAction.Disable();
     }
 
     private void Start()
@@ -45,17 +48,22 @@ public class DiceMovement : MonoBehaviour
             var value = context.ReadValue<float>();
             StartCoroutine(Roll(new Vector3( 0,0, -Convert.ToInt32(value))));
         };
+        resetLevelAction.performed += _ => resetLevel();
     }
-    
+
+    private void resetLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private IEnumerator Roll(Vector3 movementVector)
     {
         float rotation = (int)(Camera.main.gameObject.transform.eulerAngles.y - 35);
         float temp = rotation / 90;
-        rotation = (int) temp * 90;
+        rotation = Mathf.RoundToInt(temp) * 90;
         
         movementVector = Quaternion.Euler(0, rotation, 0) * movementVector;
         var ray = new Ray(transform.position, movementVector);
-        Debug.Log(rotation);
         
         if (!diceMoving)
         {
@@ -66,12 +74,16 @@ public class DiceMovement : MonoBehaviour
                     yield break;
                 }
             }
-            if (Physics.Raycast(transform.position + movementVector, Vector3.down, out hit ,2f, LayerMask.NameToLayer("Player")))
+            if (Physics.Raycast(transform.position + movementVector, Vector3.down, out hit ,1f, LayerMask.NameToLayer("Player")))
             {
                 if (!hit.collider.CompareTag("floor"))
                 {
                     yield break;
                 }
+            }
+            else
+            {
+                yield break;
             }
             diceMoving = true;
             float remainingAngle = 90;

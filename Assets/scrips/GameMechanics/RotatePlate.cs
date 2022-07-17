@@ -30,9 +30,16 @@ namespace scrips.GameMechanics
 
         private IEnumerator RotateDice(DiceMovement movementScript, GameObject dice)
         {
+            var dices = GameObject.FindGameObjectsWithTag("Dice");
+            foreach (var die in dices)
+            {
+                Debug.Log("lol");
+                die.GetComponent<DiceMovement>().diceMoving = true;
+            }
             movementScript.diceMoving = true;
             const int totalDeg = 90;
             const int rotateAmount = 2;
+            var tempCubeRotation = dice.transform.eulerAngles.y;
             var currentDeg = 0;
             while (totalDeg > currentDeg)
             {
@@ -40,7 +47,13 @@ namespace scrips.GameMechanics
                 currentDeg += rotateAmount;
                 yield return new WaitForSeconds(1f/60);
             }
+
+            dice.transform.eulerAngles = new Vector3(dice.transform.eulerAngles.x, tempCubeRotation+ 90,dice.transform.eulerAngles.z);
             movementScript.diceMoving = false;
+            foreach (var die in dices)
+            {
+                die.GetComponent<DiceMovement>().diceMoving = false;
+            }
         }
     }
 }
