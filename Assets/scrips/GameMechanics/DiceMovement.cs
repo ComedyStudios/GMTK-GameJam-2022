@@ -73,6 +73,29 @@ public class DiceMovement : MonoBehaviour
                 {
                     yield break;
                 }
+
+                if (hit.collider.CompareTag("Dice"))
+                {
+                    Debug.Log("lal");
+                    if (Physics.Raycast(hit.collider.transform.position,movementVector, out var h, transform.localScale.x))
+                    {
+                        if (h.collider.CompareTag("Wall"))
+                        {
+                            yield break;
+                        }
+                    }
+                    if (Physics.Raycast(hit.collider.transform.position + movementVector, Vector3.down, out hit ,1f, LayerMask.NameToLayer("Player")))
+                    {
+                        if (!hit.collider.CompareTag("floor"))
+                        {
+                            yield break;
+                        }
+                    }
+                    else
+                    {
+                        yield break;
+                    }
+                }
             }
             if (Physics.Raycast(transform.position + movementVector, Vector3.down, out hit ,1f, LayerMask.NameToLayer("Player")))
             {

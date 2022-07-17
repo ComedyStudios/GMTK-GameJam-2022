@@ -1480,7 +1480,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1786,6 +1786,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4242290883860994714, guid: 4e4ef0ddfd5bd1340aa2a1e4e7afa824,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242290883860994714, guid: 4e4ef0ddfd5bd1340aa2a1e4e7afa824,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242290883860994714, guid: 4e4ef0ddfd5bd1340aa2a1e4e7afa824,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242290883860994714, guid: 4e4ef0ddfd5bd1340aa2a1e4e7afa824,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242290883860994714, guid: 4e4ef0ddfd5bd1340aa2a1e4e7afa824,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4482236533338070897, guid: 4e4ef0ddfd5bd1340aa2a1e4e7afa824,
         type: 3}
       propertyPath: m_AnchorMax.y
