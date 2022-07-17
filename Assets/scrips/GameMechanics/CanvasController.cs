@@ -31,12 +31,22 @@ namespace scrips.GameMechanics
         {
             if (!_menuIsOpen)
             {
+                var dices = GameObject.FindGameObjectsWithTag("Dice");
+                foreach (var die in dices)
+                {
+                    die.GetComponent<DiceMovement>().diceMoving = true;
+                }
                 anim.Play("Menu");
                 yield return new WaitForSeconds(1f);
                 _menuIsOpen = true;
             }
             else
             {
+                var dices = GameObject.FindGameObjectsWithTag("Dice");
+                foreach (var die in dices)
+                {
+                    die.GetComponent<DiceMovement>().diceMoving = false;
+                }
                 anim.Play("MenuExit");
                 yield return new WaitForSeconds(1f);
                 _menuIsOpen = false;

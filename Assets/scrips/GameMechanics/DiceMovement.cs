@@ -86,6 +86,7 @@ public class DiceMovement : MonoBehaviour
                 yield break;
             }
             diceMoving = true;
+            SoundManager.Instance.DiceSfx();
             float remainingAngle = 90;
             Vector3 rotationCenter = transform.position + ( movementVector/2 + Vector3.down/2)* transform.localScale.x;
             Vector3 rotationAxis = Vector3.Cross(Vector3.up, movementVector);

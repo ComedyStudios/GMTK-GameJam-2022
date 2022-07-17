@@ -33,7 +33,6 @@ namespace scrips.GameMechanics
             var dices = GameObject.FindGameObjectsWithTag("Dice");
             foreach (var die in dices)
             {
-                Debug.Log("lol");
                 die.GetComponent<DiceMovement>().diceMoving = true;
             }
             movementScript.diceMoving = true;
