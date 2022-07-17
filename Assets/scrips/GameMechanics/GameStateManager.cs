@@ -11,6 +11,7 @@ namespace scrips.GameMechanics
         //[HideInInspector]
         public List<WinPlate> activeWinPlates = new List<WinPlate>();
         public static GameStateManager Instance;
+        public Animator gameUIAnimator;
 
         private void Start()
         {
@@ -20,8 +21,9 @@ namespace scrips.GameMechanics
         private void Update()
         {
             if (activeWinPlates.Count == totalPlates)
-            { 
-                //TODO: make the next scene load or shit
+            {
+                gameUIAnimator.gameObject.GetComponent<CanvasController>().enabled = false;
+                gameUIAnimator.Play("levelFinished");
                 Debug.Log("you win");
             }
         }

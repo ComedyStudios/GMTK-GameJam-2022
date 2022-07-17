@@ -31,5 +31,10 @@ namespace scrips.UI
         {
             SceneManager.LoadScene("Menu");
         }
+
+        public void NextLevel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }
