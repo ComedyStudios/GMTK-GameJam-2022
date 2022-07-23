@@ -5,36 +5,36 @@ namespace scrips.GameMechanics
 {
     public class DiceNumberManager : MonoBehaviour 
     {
-        public int? GetNumber()
+        private int _number;
+        
+        public int GetNumber()
         {
-            if (transform.up == Vector3.up)
+            Debug.Log($"{transform.up} {transform.right} {transform.forward} || {transform.eulerAngles}");
+            if (Mathf.Approximately(1.0f, Vector3.Dot(transform.up, Vector3.up)))
             {
-                return 1;
+                _number = 1;
             }
-            else if(transform.up == Vector3.down)
+            else if(Mathf.Approximately(1.0f, Vector3.Dot(transform.up, Vector3.down)))
             {
-                return 6;
+                _number =  6;
             }
-            else if (transform.right == Vector3.up)
+            else if (Mathf.Approximately(1.0f, Vector3.Dot(transform.right, Vector3.up)))
             {
-                return 3;
+                _number =  3;
             }
-            else if(transform.right == Vector3.down)
+            else if(Mathf.Approximately(1.0f, Vector3.Dot(transform.right, Vector3.down)))
             {
-                return 4;
+                _number =  4;
             }
-            else if (transform.forward == Vector3.up)
+            else if (Mathf.Approximately(1.0f, Vector3.Dot(transform.forward, Vector3.up)))
             {
-                return 2;
+                _number =  2;
             }
-            else if(transform.forward == Vector3.down)
+            else if(Mathf.Approximately(1.0f, Vector3.Dot(transform.forward, Vector3.down)))
             {
-                return 5;
+                _number =  5;
             }
-            else
-            {
-                return null;
-            }
+            return _number;
         }
     }
 }

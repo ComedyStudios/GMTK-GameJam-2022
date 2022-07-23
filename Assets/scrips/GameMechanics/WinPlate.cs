@@ -24,7 +24,6 @@ namespace scrips.GameMechanics
             if (other.CompareTag("Dice"))
             {
                 var number = other.gameObject.GetComponent<DiceNumberManager>().GetNumber();
-                Debug.Log(number);
                 if (number == rightNumber && !GameStateManager.Instance.activeWinPlates.Contains(this))
                 {
                    GameStateManager.Instance.activeWinPlates.Add(this);

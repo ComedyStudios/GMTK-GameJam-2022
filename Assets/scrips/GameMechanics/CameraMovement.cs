@@ -32,13 +32,13 @@ namespace scrips.GameMechanics
             {
                 _isMoving = true;
                 const int totalDeg = 90;
-                const int rotateAmount = 2;
-                var currentDeg = 0;
+                const float rotateAmount = 1f;
+                var currentDeg = 0f;
                 while (totalDeg > currentDeg)
                 {
                     transform.Rotate(Vector3.up, rotateAmount *value, Space.World);
                     currentDeg += rotateAmount;
-                    yield return new WaitForSeconds(1f/80);
+                    yield return new WaitForSeconds(1f/160);
                 }
                 _isMoving = false;
             }
