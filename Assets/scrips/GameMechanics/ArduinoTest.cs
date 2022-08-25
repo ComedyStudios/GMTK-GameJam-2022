@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO.Ports;
@@ -32,6 +33,11 @@ public class ArduinoTest : MonoBehaviour
             dataString += data + ";";
         }
         TranslateToUnityInputs();
+    }
+
+    private void OnDestroy()
+    {
+        _port.Close();
     }
 
     private void parseString(string inputs)

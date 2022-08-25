@@ -9,8 +9,10 @@ namespace scrips.GameMechanics
     {
         public InputAction menuAction;
         public Animator anim;
-
+        public ArduinoTest arduino;
         private bool _menuIsOpen = false;
+
+        private bool _buttonPressed = false;
         
         private void OnEnable()
         {
@@ -25,6 +27,21 @@ namespace scrips.GameMechanics
         private void Start()
         {
             menuAction.performed += _ => StartCoroutine(OpenMenu());
+        }
+
+        private void Update()
+        {
+            if (arduino.inputs.r && !_buttonPressed)
+            {
+                _buttonPressed = true;
+                Debug.Log("le");
+                StartCoroutine(OpenMenu());
+            }
+
+            if (!arduino.inputs.r && _buttonPressed)
+            {
+                _buttonPressed = false;
+            }
         }
 
         private IEnumerator OpenMenu()

@@ -1595,6 +1595,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 6514847215821841340, guid: 4e4ef0ddfd5bd1340aa2a1e4e7afa824,
+        type: 3}
+      propertyPath: arduino
+      value: 
+      objectReference: {fileID: 82709668}
     - target: {fileID: 6514847215821841343, guid: 4e4ef0ddfd5bd1340aa2a1e4e7afa824,
         type: 3}
       propertyPath: m_Pivot.x

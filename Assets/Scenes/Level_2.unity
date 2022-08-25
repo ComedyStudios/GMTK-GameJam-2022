@@ -2046,6 +2046,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6514847215821841340, guid: 4e4ef0ddfd5bd1340aa2a1e4e7afa824,
+        type: 3}
+      propertyPath: arduino
+      value: 
+      objectReference: {fileID: 1832527028}
     - target: {fileID: 6514847216143384364, guid: 4e4ef0ddfd5bd1340aa2a1e4e7afa824,
         type: 3}
       propertyPath: m_AnchorMax.y
