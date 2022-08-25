@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97632b9d42b9314aa65fd7649ea7ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arduino: {fileID: 8463474452770207717, guid: fe685519932408b49a64988cc7bd75cf, type: 3}
   movementActionX:
     m_Name: Movement Action X
     m_Type: 0

@@ -13,12 +13,16 @@ using Vector3 = UnityEngine.Vector3;
 
 public class DiceMovement : MonoBehaviour
 {
+    [SerializeField] private ArduinoTest arduino;
+    
     public InputAction movementActionX;
     public InputAction movementActionY;
     public InputAction resetLevelAction;
     public float speed = 300;
 
     public bool diceMoving = false;
+
+    private bool _leftButtonPressed;
 
     private void OnEnable()
     {
@@ -51,16 +55,33 @@ public class DiceMovement : MonoBehaviour
         resetLevelAction.performed += _ => resetLevel();
     }
     
-    
-
     private void Update()
     {
-        Debug.Log(GetComponent<DiceNumberManager>().GetNumber());
+        var arduinoInput = arduino.inputs.stickR;
+        if (Math.Abs(arduinoInput.x)> Math.Abs(arduinoInput.y))
+        {
+            StartCoroutine(Roll(new Vector3(Convert.ToInt32(arduinoInput.x), 0, 0)));
+        }
+        else if (Math.Abs(arduinoInput.x)< Math.Abs(arduinoInput.y))
+        {
+            StartCoroutine(Roll(new Vector3(0, 0, Convert.ToInt32(arduinoInput.y))));
+        }
+
+        if (arduino.inputs.l && !_leftButtonPressed)
+        {
+            _leftButtonPressed = true;
+            resetLevel();
+        }
+        if(arduino.inputs.l == false && _leftButtonPressed)
+        {
+            _leftButtonPressed = false;
+        }
     }
 
     private void resetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        arduino.ClosePort();
     }
 
     private IEnumerator Roll(Vector3 movementVector)
@@ -83,7 +104,6 @@ public class DiceMovement : MonoBehaviour
 
                 if (hit.collider.CompareTag("Dice"))
                 {
-                    Debug.Log("lal");
                     if (Physics.Raycast(hit.collider.transform.position,movementVector, out var h, transform.localScale.x))
                     {
                         if (h.collider.CompareTag("Wall"))
